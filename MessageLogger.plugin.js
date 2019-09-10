@@ -4,7 +4,7 @@ class MessageLogger {
 	
 	getName() { return "MessageLogger"; }
 	getDescription() { return "Records all sent messages, message edits and message deletions in the specified servers, all unmuted servers or all servers, and in direct messages."; }
-	getVersion() { return "1.14.21"; }
+	getVersion() { return "1.14.22"; }
 	getAuthor() { return "Metalloriff"; }
 	getChanges() {
 		return {
@@ -478,7 +478,7 @@ class MessageLogger {
 			// the class needs to get changed back to the getClass function, but since that is not working currently I changed it to the actual class to not produce any error here
 			if(e.target.classList.contains("wrapper-1BJsBx") || e.target.classList.contains("acronym-2mOFsV")) return this.onGuildContext(e);
 
-			if(NeatoLib.DOM.searchForParentElementByClassName(e.target, NeatoLib.getClass("messageCozy", "message"))) return this.onMessageContext();
+			if(NeatoLib.DOM.searchForParentElementByClassName(e.target, NeatoLib.getClass("message"))) return this.onMessageContext();
 
 			const channel = NeatoLib.ReactData.getProp(NeatoLib.ContextMenu.get(), "channel") || this.getChannel(NeatoLib.ReactData.getProp(NeatoLib.ContextMenu.get(), "channelId"));
 			
@@ -806,7 +806,7 @@ class MessageLogger {
 		if(!document.getElementsByClassName(NeatoLib.getClass("chat")).length) return;
 
 		setTimeout(() => {
-			const messages = document.getElementsByClassName(NeatoLib.getClass("messageCozy", "message"));
+			const messages = document.getElementsByClassName(NeatoLib.getClass("message"));
 
 			const onClickEditedTag = e => {
 				const mid = NeatoLib.ReactData.getProp(e.currentTarget, "message.id");
@@ -1158,7 +1158,7 @@ class MessageLogger {
 
 		element.innerHTML =
 		`<div class="${NeatoLib.getClass("containerCozy")} ${NeatoLib.getClass("containerCozy", "container")} ml-message-group">
-			<div class="${NeatoLib.getClass("messageCozy")} ${NeatoLib.getClass("messageCozy", "message")}" aria-disabled="false">
+			<div class="${NeatoLib.getClass("message")}" aria-disabled="false">
 				<div class="${NeatoLib.getClass("headerCozy")}">
 					<div tabindex="-1" class="ml-avatar-wrapper" role="button">
 						<div class="ml-avatar-wrapper" style="background-image:url(${this.getAvatarOf(data.message.author)});padding:0"></div>
